@@ -2,10 +2,10 @@
 
 
 var mongoose = require('mongoose'),
-  Task = mongoose.model('Questions');
+  Question = mongoose.model('Questions');
 
 exports.list_all_questions = function(req, res) {
-  Task.find({}, function(err, question) {
+  Question.find({}, function(err, question) {
     if (err)
       res.send(err);
     res.json(question);
@@ -16,8 +16,8 @@ exports.list_all_questions = function(req, res) {
 
 
 exports.create_a_question = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, question) {
+  var new_question = new Task(req.body);
+  new_question.save(function(err, question) {
     if (err)
       res.send(err);
     res.json(question);
@@ -26,7 +26,7 @@ exports.create_a_question = function(req, res) {
 
 
 exports.read_a_question = function(req, res) {
-  Task.findById(req.params.taskId, function(err, question) {
+  Question.findById(req.params.questionId, function(err, question) {
     if (err)
       res.send(err);
     res.json(question);
@@ -51,6 +51,6 @@ exports.delete_a_question = function(req, question) {
   }, function(err, questions) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'Question successfully deleted' });
   });
 };
